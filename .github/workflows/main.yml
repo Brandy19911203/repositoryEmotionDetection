@@ -1,0 +1,35 @@
+bashCopy
+pip install watson-nlp
+pythonCopy
+import watson_nlp
+from watson_nlp import WatsonNLP
+pythonCopy
+def detect_emotions(text):
+    # Initialize the Watson NLP client
+    client = WatsonNLP(api_key='YOUR_API_KEY')
+    
+    # Use the Watson NLP library to detect emotions
+    result = client.analyze_text(text, features={'emotion': True})
+    
+    # Extract the emotions from the result
+    emotions = result['emotion']['document']['emotion']
+    
+    return emotions
+
+# Example usage
+if __name__ == "__main__":
+    text = "I am feeling really happy today!"
+    emotions = detect_emotions(text)
+    print(emotions)
+    markdownCopy
+emotion_detection/
+    __init__.py
+    core.py
+pythonCopy
+from .core import detect_emotions
+pythonCopy
+from emotion_detection import detect_emotions
+
+text = "I am feeling really happy today!"
+emotions = detect_emotions(text)
+print(emotions)
